@@ -2,6 +2,13 @@ import streamlit as st
 from crewai import LLM,Agent, Task, Crew
 import os
 
+from langchain_mistralai import ChatMistralAI
+import os
+
+# It's best practice to set the API key as an environment variable
+os.environ["MISTRAL_API_KEY"] = "aSTlmVLcWwKMH3kCNXGX25U1CKwMNAfo" # Your key
+
+
 
 misteral_key = "aSTlmVLcWwKMH3kCNXGX25U1CKwMNAfo"
 
@@ -18,15 +25,19 @@ This application uses a team of AI agents to transform your project idea into a 
 You will be asked for feedback to clarify requirements before the final documents are generated.
 """)
 
+# Initialize the LLM using the new class
+llm = ChatMistralAI(
+    model="mistral-large-latest",
+    temperature=0.5
+)
 
-
-
+"""
 llm = LLM(
     model="mistral/mistral-large-latest",
     temperature=0.5,
     api_key=misteral_key,
 )
-
+"""
 # --- Session State Initialization ---
 if "crew_result" not in st.session_state:
     st.session_state.crew_result = None
