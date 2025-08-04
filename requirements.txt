@@ -1,5 +1,5 @@
 # Forcing a compatible sqlite3 version to be used by chromadb
-pysqlite3-binary=3.35.0
+pysqlite3-binary==3.35.0
 
 # Pinning crewai and chromadb to versions that work together
 # and are known to be stable on cloud platforms.
