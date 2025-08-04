@@ -1,11 +1,15 @@
 import streamlit as st
 #from crewai import LLM,Agent, Task, Crew
 from crewai import Agent, Task, Crew
-
 import os
-
 from langchain_mistralai import ChatMistralAI
-import os
+import sys
+import pysqlite3
+
+# Monkey-patch the standard sqlite3 module
+sys.modules["sqlite3"] = pysqlite3
+
+import sqlite3  # now this uses the newer one
 
 # It's best practice to set the API key as an environment variable
 os.environ["MISTRAL_API_KEY"] = "aSTlmVLcWwKMH3kCNXGX25U1CKwMNAfo" # Your key
