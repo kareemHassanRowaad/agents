@@ -1,5 +1,7 @@
 import streamlit as st
+#from crewai import LLM,Agent, Task, Crew
 from crewai import LLM,Agent, Task, Crew
+
 import os
 
 from langchain_mistralai import ChatMistralAI
@@ -31,13 +33,7 @@ llm = ChatMistralAI(
     temperature=0.5
 )
 
-"""
-llm = LLM(
-    model="mistral/mistral-large-latest",
-    temperature=0.5,
-    api_key=misteral_key,
-)
-"""
+
 # --- Session State Initialization ---
 if "crew_result" not in st.session_state:
     st.session_state.crew_result = None
