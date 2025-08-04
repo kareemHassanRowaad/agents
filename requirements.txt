@@ -1,5 +1,12 @@
-streamlit
+# Forcing a compatible sqlite3 version to be used by chromadb
 pysqlite3-binary
-crewai==0.16.3
-openai
+
+# Pinning crewai and chromadb to versions that work together
+# and are known to be stable on cloud platforms.
+crewai==0.28.8
+crewai-tools==0.1.6
+chromadb==0.4.22
+
+# Standard app dependencies
+streamlit
 python-dotenv
