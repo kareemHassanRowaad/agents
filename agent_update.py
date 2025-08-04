@@ -1,7 +1,11 @@
+__import__('pysqlite3')
+import sys
+
 import streamlit as st
 from crewai import LLM,Agent, Task, Crew
 import os
 
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 misteral_key = "aSTlmVLcWwKMH3kCNXGX25U1CKwMNAfo"
 
