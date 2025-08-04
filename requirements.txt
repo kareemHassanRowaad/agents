@@ -3,9 +3,9 @@ pysqlite3-binary
 
 # Pinning crewai and chromadb to versions that work together
 # and are known to be stable on cloud platforms.
-crewai==0.28.8
-crewai-tools==0.1.6
-chromadb==0.4.22
+crewai
+crewai-tools
+chromadb
 
 # Standard app dependencies
 streamlit
