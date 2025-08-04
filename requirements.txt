@@ -1,0 +1,4 @@
+streamlit
+crewai[tools]
+openai
+python-dotenv
