@@ -154,6 +154,7 @@ if st.session_state.srs_draft:
             agent=client_responder,
             # Directly pass the SRS draft string as context
             context=[st.session_state.srs_draft]
+            )
 
 
             task_usecases = Task(
