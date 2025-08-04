@@ -1,13 +1,14 @@
 import streamlit as st
 #from crewai import LLM,Agent, Task, Crew
-from crewai import Agent, Task, Crew
-import os
-from langchain_mistralai import ChatMistralAI
 import sys
 import pysqlite3
+import os
+sys.modules["sqlite3"] = pysqlite3
+
+from crewai import Agent, Task, Crew
+from langchain_mistralai import ChatMistralAI
 
 # Monkey-patch the standard sqlite3 module
-sys.modules["sqlite3"] = pysqlite3
 
 import sqlite3  # now this uses the newer one
 
