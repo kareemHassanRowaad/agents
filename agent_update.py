@@ -4,17 +4,11 @@ import sys
 import pysqlite3
 import os
 sys.modules["sqlite3"] = pysqlite3
-
-from crewai import Agent, Task, Crew
-from langchain_mistralai import ChatMistralAI
-
 # Monkey-patch the standard sqlite3 module
 
 import sqlite3  # now this uses the newer one
-
-# It's best practice to set the API key as an environment variable
-os.environ["MISTRAL_API_KEY"] = "aSTlmVLcWwKMH3kCNXGX25U1CKwMNAfo" # Your key
-
+from crewai import LLM,Agent, Task, Crew
+import os
 
 
 misteral_key = "aSTlmVLcWwKMH3kCNXGX25U1CKwMNAfo"
@@ -32,12 +26,14 @@ This application uses a team of AI agents to transform your project idea into a 
 You will be asked for feedback to clarify requirements before the final documents are generated.
 """)
 
-# Initialize the LLM using the new class
-llm = ChatMistralAI(
-    model="mistral-large-latest",
-    temperature=0.5
-)
 
+
+
+llm = LLM(
+    model="mistral/mistral-large-latest",
+    temperature=0.5,
+    api_key=misteral_key,
+)
 
 # --- Session State Initialization ---
 if "crew_result" not in st.session_state:
@@ -132,7 +128,7 @@ if st.session_state.srs_draft:
             task_srs_context.output = st.session_state.srs_draft
 
             # Now, define the remaining tasks using the context from our placeholder task
-            """task_update = Task(
+            task_update = Task(
                 description=(
                     "You have an initial SRS and a list of questions that were asked to the client. "
                     f"Here are the client's answers:\n\n'{st.session_state.human_answers}'\n\n"
@@ -142,21 +138,7 @@ if st.session_state.srs_draft:
                 expected_output="The final, updated, and clarified SRS document in markdown format (please answer in arabic).",
                 agent=client_responder,
                 context=[task_srs_context] # Use the placeholder task for context
-            )"""
-            # This is the new, correct code
-            task_update = Task(
-                description=(
-                    "You have an initial SRS and a list of questions that were asked to the client. "
-                    f"Here are the client's answers:\n\n'{st.session_state.human_answers}'\n\n"
-                    "Your job is to update the initial SRS based on these answers. Refine the requirements, "
-                    "fill in the missing details, and remove the 'Open Questions' section."
-                ),
-            expected_output="The final, updated, and clarified SRS document in markdown format (please answer in arabic).",
-            agent=client_responder,
-            # Directly pass the SRS draft string as context
-            context=[st.session_state.srs_draft]
             )
-
 
             task_usecases = Task(
                 description=(
