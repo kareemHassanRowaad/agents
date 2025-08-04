@@ -1,5 +1,5 @@
 streamlit
 pysqlite3-binary
-crewai
+crewai==0.16.3
 openai
 python-dotenv
