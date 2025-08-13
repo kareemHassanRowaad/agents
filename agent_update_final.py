@@ -10,7 +10,7 @@ from crewai.knowledge.source.text_file_knowledge_source import TextFileKnowledge
 
 
 
-misteral_key = "aSTlmVLcWwKMH3kCNXGX25U1CKwMNAfo"
+misteral_key = "Hrli3CJHsbdHGEm2whSACxAlcoY3yNvP"
 
 # --- Page Configuration ---
 st.set_page_config(
